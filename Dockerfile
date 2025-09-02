@@ -1,0 +1,1 @@
+FROM node:18-bullseye\nWORKDIR /app\nCOPY package.json package-lock.json* yarn.lock* pnpm-lock.yaml* ./\nRUN npm install || true\nCOPY . .\nENV HOST=0.0.0.0\nEXPOSE 3000\nCMD bash -lc "npm install && npx prisma generate && npm run db:push && npm run seed && npm run dev"\n

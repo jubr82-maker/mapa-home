@@ -1,0 +1,15 @@
+
+version: "3.9"
+services:
+  web:
+    build: .
+    ports: ["3000:3000"]
+    environment:
+      - DATABASE_URL=file:./dev.db
+      - SITE_NAME=MAPA Home
+      - SITE_EMAIL=admin@mapagroup.org
+      - SITE_PHONE=+352 691 620 127
+      - SITE_LOCALE=fr
+    volumes:
+      - .:/app
+    command: bash -lc "npm install && npx prisma generate && npm run db:push && npm run seed && npm run dev"

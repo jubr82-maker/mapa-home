@@ -1,0 +1,6 @@
+
+@tailwind base; @tailwind components; @tailwind utilities;
+:root{--bg:#0A0A0A;--fg:#FFFFFF} html,body{height:100%} body{background:var(--bg);color:var(--fg);font-feature-settings:"liga" 1,"kern" 1}
+.container{ @apply max-w-6xl mx-auto px-4; } .btn{ @apply inline-flex items-center justify-center rounded px-5 py-2 font-medium transition; }
+.btn-gold{ @apply bg-mapa-gold text-black hover:bg-mapa-goldSoft shadow-gold; } .btn-outline{ @apply border border-mapa-gold text-mapa-gold hover:bg-mapa-gold hover:text-black; }
+.card{ @apply border border-white/10 bg-white/5 backdrop-blur rounded-lg; } .hero{ background: radial-gradient(1000px 600px at 80% -10%, rgba(201,162,39,0.25), rgba(201,162,39,0) 60%); }

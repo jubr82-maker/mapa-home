@@ -1,0 +1,28 @@
+
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "sqlite"; url = env("DATABASE_URL") }
+enum PropertyType { APARTMENT HOUSE PENTHOUSE LAND OFFICE }
+model Listing {
+  id           String       @id @default(cuid())
+  title        String
+  price        Int
+  location     String
+  municipality String?
+  canton       String?
+  type         PropertyType?
+  beds         Int
+  baths        Int
+  area         Int
+  floor        Int?
+  parking      Int?
+  energyRating String?
+  thumbnail    String?
+  images       String[]
+  description  String
+  features     String[]
+  latitude     Float?
+  longitude    Float?
+  embedding    String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

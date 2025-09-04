@@ -1,5 +1,4 @@
 // prisma/schema.prisma
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,33 +8,36 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum PropertyType {
+  APARTMENT
+  HOUSE
+  PENTHOUSE
+  LAND
+  OFFICE
+}
+
 model Listing {
-  id           String   @id @default(cuid())
+  id           String        @id @default(cuid())
   title        String
   price        Int
   location     String
   municipality String?
   canton       String?
-  // pas d'enum pour SQLite : on stocke le type en texte
-  type         String?
-
+  type         PropertyType?
   beds         Int
   baths        Int
   area         Int
   floor        Int?
   parking      Int?
   energyRating String?
-
-  // pas de listes scalaires en SQLite : on stocke du JSON (string)
   thumbnail    String?
-  images       String?   // ex: '["/a.jpg","/b.jpg"]'
+  // On stocke des tableaux en chaîne JSON (plus simple avec SQLite)
+  images       String?       // ex: '["/img1.jpg","/img2.jpg"]'
   description  String
-  features     String?   // ex: '["Terrasse","Jardin"]'
-
+  features     String?       // ex: '["terrasse","parking"]'
   latitude     Float?
   longitude    Float?
   embedding    String?
-
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
 }
